@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AiKea</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="developer_email">liguanzhu390@gmail.com</string>
+    <string name="contact_subject">Contact</string>
+</resources>
