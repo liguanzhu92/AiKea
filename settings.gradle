@@ -1,1 +1,2 @@
 include ':app'
+include 'Library:mysql-connector-java-5.1.40'

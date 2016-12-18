@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             }
         });
 
-
       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
       fab.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -96,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
               }
           }
       });
-      
+        Log.i("email", "email");
     }
 
 

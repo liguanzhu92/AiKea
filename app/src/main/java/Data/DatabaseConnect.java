@@ -1,5 +1,7 @@
 package Data;
 
+
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -29,7 +31,7 @@ public class DatabaseConnect {
             cmf.printStackTrace();
         }
     }
-    protected static void addDB(String itemID, String itemName) {
+    public void addDB(String itemID, String itemName) {
         // from java.sql.Connection;
         Connection con = null;
         PreparedStatement stmt = null;
@@ -59,24 +61,24 @@ public class DatabaseConnect {
         }
     }
     // get details for certain item
-    protected static void itemALLDB(String dbName, String itemID) {
+    public Item itemALLDB(String dbName, String itemID) {
         Connection con = null;
         Statement stmt = null;
+        Item temp = null;
         String query = "select * from " + dbName + ".aikea where ITEM_ID="+itemID;
         try {
             con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
-            ArrayList<Item> itemSet = new ArrayList<>();
+
             while (rs.next()) {
-                Item temp = new Item.ItemBuilder(itemID, rs.getString(ITEM_NAME), rs.getString(IMAGE),
+                temp = new Item.ItemBuilder(itemID, rs.getString(ITEM_NAME), rs.getString(IMAGE),
                         rs.getString(CATEGORY), rs.getDouble(PRICE))
                         .length(rs.getString(LENGTH))
                         .width(rs.getString(WIDTH))
                         .designer(rs.getString(DESIGNER))
                         .discription(rs.getString(DESCRIPTION))
                         .build();
-                itemSet.add(temp);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -94,18 +96,22 @@ public class DatabaseConnect {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+            return temp;
         }
     }
     // get all the items in certain category
-    protected static void categoryDB(String dbName, String category) {
+    public ArrayList<Item> categoryDB(String dbName, String category) {
         Connection con = null;
-        Statement stmt = null;
-        String query = "select ITEM_ID, ITEM_NAME, Price, Image from " + dbName + ".aikea WHERE Category=" + category;
+        PreparedStatement stmt = null;
+        ArrayList<Item> itemSet = null;
+        String query = "select ITEM_ID, ITEM_NAME, Price, Image from aikea.? WHERE Category=?";
         try {
             con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            stmt = con.createStatement();
+            stmt = con.prepareStatement(query);
+            stmt.setString(1,dbName);
+            stmt.setString(2,category);
             ResultSet rs = stmt.executeQuery(query);
-            ArrayList<Item> itemSet = new ArrayList<>();
+            itemSet = new ArrayList<>();
             while (rs.next()) {
                 Item temp = new Item.ItemBuilder(rs.getString(ITEM_ID), rs.getString(ITEM_NAME), rs.getString(IMAGE),
                         category, rs.getDouble(PRICE)).build();
@@ -125,6 +131,7 @@ public class DatabaseConnect {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+            return itemSet;
         }
     }
 }
