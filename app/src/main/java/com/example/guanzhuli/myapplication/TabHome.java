@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +47,8 @@ public class TabHome extends ListFragment{
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        Toast.makeText(getActivity(), aList.get(position).get(cateName), Toast.LENGTH_SHORT).show();
-
+        Toast.makeText(getActivity(), "it is " + position, Toast.LENGTH_SHORT).show();
+        TabLayout tabhost = (TabLayout) getActivity().findViewById(R.id.tabs);
+        tabhost.getTabAt(position+1).select();
     }
 }

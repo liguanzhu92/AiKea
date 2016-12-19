@@ -97,6 +97,13 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
           }
       });
         Log.i("email", "email");
+        FloatingActionButton fabHome = (FloatingActionButton) findViewById(R.id.fab_home);
+        fabHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTabLayout.getTabAt(0).select();
+            }
+        });
     }
 
 
@@ -146,10 +153,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     TabHome tab1 = new TabHome();
                     return tab1;
                 case 1:
-                    TabSofa tab2 = new TabSofa();
+                    TabBed tab2 = new TabBed();
                     return tab2;
                 case 2:
-                    TabBed tab3 = new TabBed();
+                    TabSofa tab3 = new TabSofa();
                     return tab3;
                 case 3:
                     TabTable tab4 = new TabTable();
