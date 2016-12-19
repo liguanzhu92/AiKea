@@ -3,6 +3,7 @@ package com.example.guanzhuli.myapplication;
 
 import Data.DatabaseConnect;
 import Data.Item;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -12,6 +13,10 @@ import android.widget.AdapterView;
 import android.widget.SimpleAdapter;
 
 import java.lang.reflect.Field;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -33,8 +38,10 @@ public class TabBed extends ListFragment implements AdapterView.OnItemClickListe
 
         //Returning the layout file after inflating
         //Change R.layout.tab1 in you classes
-/*        arrayManipulation();
-        mapRes();*/
+        //arrayManipulation();
+/*        DBConnectTask temp = new DBConnectTask();
+        temp.execute();*/
+
 /*-------------------------------test block------------------------------------------*/
         aList.clear();
         for (int i = 0; i < 3; i++) {
@@ -59,10 +66,80 @@ public class TabBed extends ListFragment implements AdapterView.OnItemClickListe
 
     }
 
-    // initialize array
+/*    class DBConnectTask extends AsyncTask <Void, Void, ArrayList<Item> >{
+        ArrayList<Item> itemList;
+        @Override
+        protected ArrayList<Item> doInBackground(Void... voids) {
+*//*            DatabaseConnect dbcn = new DatabaseConnect();*//*
+*//*            itemList = dbcn.categoryDB("item", "Bed");*//*
+*//*--------------------------------test connection---------------------------------------------------------*//*
+            String DRIVER = "com.mysql.jdbc.Driver";
+            String URL = "jdbc:mysql://192.168.1.100:3306/aikea";
+            String USERNAME = "root";
+            String PASSWORD =  "root";
+            try {
+                Class.forName(DRIVER);
+            } catch (ClassNotFoundException cmf) {
+                System.out.println("Error Loading Driver");
+                cmf.printStackTrace();
+            }
+            Connection con = null;
+            PreparedStatement stmt = null;
+            String query = "insert into aikea.favourite (ITEM_ID, ITEM_NAME) VALUES (?, ?)";
+            try {
+                con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+                stmt = con.prepareStatement(query);
+                stmt.setString(1, "bed006");
+                stmt.setString(2, "bed test");
+                stmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                // close the connection so important!!!
+                try {
+                    if (con != null) {
+                        System.out.println("Successful Connected");
+                        con.close();
+                    }
+                    if (stmt != null) {
+                        System.out.println("Successfully Add!");
+                        stmt.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            return itemList;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Item> items) {
+
+            Iterator<Item> iter = itemList.iterator();
+            ArrayList<String> mItemName = new ArrayList<>();
+            ArrayList<String> mItemID = new ArrayList<>();
+            ArrayList<Double> mItemPrice = new ArrayList<>();
+            ArrayList<Integer> mItemPic = new ArrayList<>();
+            while (iter.hasNext()) {
+                Item temp = iter.next();
+                mItemName.add(temp.getItemName());
+                mItemID.add(temp.getItemID());
+                mItemPrice.add(temp.getPrice());
+                Integer picID = getResId(temp.getImage(), R.drawable.class);
+                mItemPic.add(picID);
+            }
+            itemName = mItemName.toArray(itemName);
+            itemID = mItemID.toArray(itemID);
+            itemPrice = mItemPrice.toArray(itemPrice);
+            itemPic = mItemPic.toArray(itemPic);
+            mapRes();
+        }
+    }*/
+/*    // initialize array
     private void arrayManipulation() {
         DatabaseConnect dbcn = new DatabaseConnect();
         ArrayList<Item> itemList = dbcn.categoryDB("item", "Bed");
+
         Iterator<Item> iter = itemList.iterator();
         ArrayList<String> mItemName = new ArrayList<>();
         ArrayList<String> mItemID = new ArrayList<>();
@@ -80,7 +157,7 @@ public class TabBed extends ListFragment implements AdapterView.OnItemClickListe
         itemID = mItemID.toArray(itemID);
         itemPrice = mItemPrice.toArray(itemPrice);
         itemPic = mItemPic.toArray(itemPic);
-    }
+    }*/
     // map the resources
     private void mapRes() {
         for (int i = 0; i <  itemID.length; i++) {

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="aikea@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="aikea">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="sakila"/>
+    <schema id="7" parent="1" name="sys"/>
+    <schema id="8" parent="1" name="world"/>
+    <table id="9" parent="2" name="favourite"/>
+    <table id="10" parent="2" name="item"/>
+    <column id="11" parent="9" name="ITEM_ID">
+      <Position>1</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="12" parent="9" name="ITEM_NAME">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="13" parent="9" name="PRIMARY">
+      <ColNames>ITEM_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="14" parent="9" name="favourite_ibfk_1">
+      <ColNames>ITEM_ID</ColNames>
+      <RefSchemaName>aikea</RefSchemaName>
+      <RefTableName>item</RefTableName>
+      <RefColNames>ITEM_ID</RefColNames>
+    </foreign-key>
+    <column id="15" parent="10" name="ITEM_ID">
+      <Position>1</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="16" parent="10" name="ITEM_NAME">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="17" parent="10" name="Price">
+      <Position>3</Position>
+      <DataType>float|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="18" parent="10" name="Length">
+      <Position>4</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="19" parent="10" name="Width">
+      <Position>5</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="20" parent="10" name="Description">
+      <Position>6</Position>
+      <DataType>varchar(500)|0</DataType>
+    </column>
+    <column id="21" parent="10" name="Designer">
+      <Position>7</Position>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="22" parent="10" name="Image">
+      <Position>8</Position>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="23" parent="10" name="Category">
+      <Position>9</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="24" parent="10" name="PRIMARY">
+      <ColNames>ITEM_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>

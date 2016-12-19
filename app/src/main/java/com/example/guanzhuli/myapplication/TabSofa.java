@@ -33,7 +33,6 @@ public class TabSofa extends ListFragment  {
         //Change R.layout.tab1 in you classes
 /*        arrayManipulation();
         mapRes();*/
-    if (savedInstanceState != null) return super.onCreateView(inflater, container, savedInstanceState);
 /*-------------------------------test block------------------------------------------*/
         aList.clear();
         for (int i = 0; i < 3; i++) {
@@ -56,10 +55,16 @@ public class TabSofa extends ListFragment  {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        // get name itemID[position]
+        String passName = "select" + position;
+        Bundle args = new Bundle();
+        args.putString("ItemID", passName);
         DetailDialogFragment detailDialogFragment = new DetailDialogFragment();
+        detailDialogFragment.setArguments(args);
+        detailDialogFragment.show(getActivity().getSupportFragmentManager(), "passItemID");
+        // get name itemID[position]
+/*        DetailDialogFragment detailDialogFragment = new DetailDialogFragment();
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.add(detailDialogFragment, "detailFragment");
-        transaction.commit();
+        transaction.commit();*/
     }
 }
