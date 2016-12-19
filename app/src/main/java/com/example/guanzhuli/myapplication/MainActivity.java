@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                   Toast.makeText(MainActivity.this,
                           "There is no email client installed.", Toast.LENGTH_SHORT).show();
               }
+              String s ="henry is so bad";
           }
       });
         Log.i("email", "email");
