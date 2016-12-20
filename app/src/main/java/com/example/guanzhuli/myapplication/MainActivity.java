@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                     TabSofa tab3 = new TabSofa();
                     return tab3;
                 case 3:
-                    TabTable tab4 = new TabTable();
+                    NewFragment tab4 = new NewFragment();
                     return tab4;
                 default:
                     return null;
@@ -178,9 +178,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 case 0:
                     return "Home";
                 case 1:
-                    return "Sofa";
-                case 2:
                     return "Bed";
+                case 2:
+                    return "Sofa";
                 case 3:
                     return "Table";
             }

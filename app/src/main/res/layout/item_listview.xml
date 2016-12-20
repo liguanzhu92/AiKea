@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    android:id="@+id/card_view"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="150dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginLeft="16dp"
+                                    android:layout_marginRight="16dp"
+                                    android:background="#C5CAE9"
+                                    android:foreground="?attr/selectableItemBackground"
+                                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:id="@+id/list_pic"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sofa" />
+
+        <TextView
+                android:id="@+id/list_name"
+                android:layout_centerVertical="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@+id/list_pic"
+                android:text="Item Name "
+                android:textColor="#000000"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textSize="16sp" />
+
+        <TextView
+                android:id="@+id/list_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/list_name"
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@+id/list_pic"
+                android:textColor="#000000"
+                android:text="ItemID"
+                android:textAppearance="?attr/textAppearanceListItem"/>
+        <TextView
+                android:id="@+id/list_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/list_id"
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@+id/list_pic"
+                android:textColor="#000000"
+                android:text="Price"
+                android:textAppearance="?attr/textAppearanceListItem"/>
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
